@@ -4,6 +4,13 @@
 # within a pipeline (-o pipefail)
 set -euo pipefail
 
+machine_id() {
+  local REMOTE_HOST="${1}"
+
+  local str=$(ssh ${REMOTE_HOST} "cat /sys/class/net/*/address | md5sum")
+  echo ${str:0:32}
+}
+
 print_csv_head() {
 	echo -e "package\tversion\tarchitecture\tdescription"
 }
@@ -52,6 +59,8 @@ main() {
 
   for i in ${ARGS[@]}; do
     echo "${i}"
+    machine_id "${i}"
+    parse_dpkg "${i}" >> "${OUTFILE}"
     parse_remote_dpkg "${i}" >> "${OUTFILE}"
   done
 
