@@ -1,4 +1,4 @@
-[BASH Hands-on](wordcloud.png)
+![BASH Hands-on](wordcloud.png)
 
 # BASH - Hands-on
 
