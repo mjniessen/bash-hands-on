@@ -22,6 +22,23 @@ parse_dpkg() {
 	done <<<"$(dpkg -l)"
 }
 
+parse_remote_dpkg() {
+  local REMOTE_HOST="${1}"
+
+	while read -ra ARR; do
+		# skip lines not starting with 'ii'
+		[[ "${ARR[0]}" != "ii" ]] && continue
+
+		local package="${ARR[1]}"
+		local version="${ARR[2]}"
+		local architecture="${ARR[3]}"
+		local description="${ARR[*]:4}"
+
+		echo -e "${package}\t${version}\t${architecture}\t${description@Q}"
+	done <<<"$(ssh ${REMOTE_HOST} dpkg -l)"
+}
+
+
 main() {
   # Save possiple given arguments
   ARGS=("$@")
@@ -31,9 +48,12 @@ main() {
   #
   # Your code has to be placed here.
   #
-
   print_csv_head > "${OUTFILE}"
-  parse_dpkg >> "${OUTFILE}"
+
+  for i in ${ARGS[@]}; do
+    echo "${i}"
+    parse_remote_dpkg "${i}" >> "${OUTFILE}"
+  done
 
   exit 0
 }
