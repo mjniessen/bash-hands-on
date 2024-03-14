@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-apt list --installed 2>/dev/null | cut -d' ' -f-2 | sed 's/\/[\,A-Za-z0-9\-]*//' | tr ' ' ','
+while read -ra ARR; do
+	# skip lines not starting with 'ii'
+	[[ "${ARR[0]}" != "ii" ]] && continue
+	echo "${ARR[1]} ${ARR[2]}"
+done <<<"$(dpkg -l)"
