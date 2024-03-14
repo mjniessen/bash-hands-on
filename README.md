@@ -10,6 +10,8 @@ sudo apt install git
 ```
 
 
+In einem Verzeichnis eurer Wahl führt ihr das folgende Kommando aus:
+
 ```bash
 git clone git@github.com:mjniessen/bash-hands-on.git
 ```
