@@ -1,3 +1,5 @@
+[BASH Hands-on](wordcloud.png)
+
 # BASH - Hands-on
 
 Hier findet ihr die erarbeiteten bzw. gezeigten Scripte unseres wöchentlichen Regeltermins.
