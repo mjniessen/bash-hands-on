@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-dpkg -l | awk '{if ($1=="ii") print $2" "$3}'
+apt list --installed 2>/dev/null | cut -d' ' -f-2 | sed 's/\/[\,A-Za-z0-9\-]*//' | tr ' ' ','
