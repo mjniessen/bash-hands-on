@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+year=${1}
+eastern=$(./eastern ${year})
+dtform="%Y-%m-%d"
+
+_date() { LC_ALL=de_DE.utf8 date "$@"; }
+
+function gesetzlich {
+	_date -d "${year}-01-01" +"${dtform} - Neujahr (%A)"
+	_date -d "${eastern} -2 day" +"${dtform} - Karfreitag"
+	_date -d "${eastern}" +"${dtform} - Ostersonntag"
+	_date -d "${eastern} +1 day" +"${dtform} - Ostermontag"
+	_date -d "${eastern} +39 day" +"${dtform} - Christi Himmelfahrt (%A)"
+	_date -d "${eastern} +50 day" +"${dtform} - Pfingstmontag"
+	_date -d "${eastern} +60 day" +"${dtform} - Frohleichnahm (%A)"
+	_date -d "${year}-10-03" +"${dtform} - Tag der deutschen Einheit (%A)"
+	_date -d "${year}-11-01" +"${dtform} - Allerheiligen (%A)"
+	_date -d "${year}-12-25" +"${dtform} - 1. Weihnachtsfeiertag (%A)"
+	_date -d "${year}-12-26" +"${dtform} - 2. Weihnachtsfeiertag (%A)"
+}
+
+function karneval {
+	date -d "${eastern} -52 day" +"${dtform} - Weiberfastnacht"
+	date -d "${eastern} -50 day" +"${dtform} - Fastsamstag"
+	date -d "${eastern} -49 day" +"${dtform} - Fastsonntag"
+	date -d "${eastern} -48 day" +"${dtform} - Rosenmontag"
+	date -d "${eastern} -47 day" +"${dtform} - Fastnacht"
+	date -d "${eastern} -46 day" +"${dtform} - Aschermittwoch"
+}
+
+function brueckentage {
+	# Christi Himmelfahrt
+	date -d "${eastern} +40 day" +"${dtform} %A - nach Christi Himmelfahrt"
+
+	# Frohleichnahm
+	date -d "${eastern} +61 day" +"${dtform} %A - nach Frohleichnahm"
+
+	# Tag der deutschen Einheit
+	local wd=$(date -d "${year}-10-03" +"%u")
+	((wd == 2)) && {
+		date -d "${year}-10-02" +"${dtform} %A - vor Tag der deutschen Einheit"
+	}
+	((wd == 4)) && {
+		date -d "${year}-10-04" +"${dtform} %A - nach Tag der deutschen Einheit"
+	}
+
+	# Allerheiligen
+	wd=$(date -d "${year}-11-04" +"%u")
+	((wd == 2)) && {
+		date -d "${year}-11-03" +"${dtform} %A - vor Allerheiligen"
+	}
+	((wd == 4)) && {
+		date -d "${year}-11-05" +"${dtform} %A - nach Allerheiligen"
+	}
+}
+
+function geburtstag {
+	local wd=$(date -d "${year}-07-08" +"%u")
+
+	date -d "${year}-07-08" +"${dtform} %A"
+}
+# Muttertag, 2. Sonntag im Mai
+# Vatertag, Himmelfahrt
+# 1. Advent, Sonntag zwischen 27. November und 3. Dezember bzw. 4x7 Tage vor dem 4. Advent
+# 4. Advent, Sonntag zwischen 18. und 24. Dezember
+
+gesetzlich
+# karneval
+# brueckentage
+# geburtstag

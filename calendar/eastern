@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+eastern_offset() {
+	local y=${1}
+	local k m n s a r oe og os sz
+
+	# Umsetzung gemäß https://de.wikipedia.org/wiki/Gau%C3%9Fsche_Osterformel
+
+	# Säkularzahl K(Y) = Y div 100
+	((k = y / 100))
+
+	# säkulare Mondschaltung M(K) = 15 + (3K + 3) div 4 − (8K + 13) div 25
+	((m = (15 + ((3 * k) + 3) / 4)))
+	((n = ((8 * k) + 13) / 25))
+	((m = m - n))
+
+	# säkulare Sonnenschaltung S(K) = 2 − (3K + 3) div 4
+	((n = ((3 * k) + 3) / 4))
+	((s = 2 + (n * -1)))
+
+	# Mondparameter A(Y) = Y mod 19
+	((a = y % 19))
+
+	# Keim für den ersten Vollmond im Frühling D(A,M) = (19A + M) mod 30
+	((n = 19 * a + m))
+	((d = n % 30))
+
+	# kalendarische Korrekturgröße R(D,A) = (D + A div 11) div 29
+	((n = d + a / 11))
+	((r = n / 29))
+
+	# Ostergrenze OG(D,R) = 21 + D − R
+	((og = 21 + d - r))
+
+	# erster Sonntag im März SZ(Y,S) = 7 − (Y + Y div 4 + S) mod 7
+	((sz = 7 - (y + y / 4 + s) % 7))
+
+	# Entfernung des Ostersonntags von der Ostergrenze [Tage] OE(OG,SZ) = 7 − (OG − SZ) mod 7
+	((oe = 7 - (og - sz) % 7))
+
+	# Datum des Ostersonntags als Offset zum 1. März OS = OG + OE
+	((os = og + oe - 1))
+	echo ${os}
+}
+
+eastern() {
+	local y=${1}
+	local offset=$(eastern_offset ${y})
+	date -d "${y}-03-01 +${offset} day" +"%Y-%m-%d"
+}
+
+usage() {
+	printf 'Usage:\n %s <year>\n' "$(basename ${0})"
+	printf '\nReturns the date of eastern for the given <year>.\n'
+	exit 1
+}
+
+main() {
+	(($# != 1)) && usage
+	eastern ${1:-$(date +"%Y")}
+}
+
+main "$@"

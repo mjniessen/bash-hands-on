@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+year=${1:-$(date +"%Y")}
+eastern=$(./eastern ${year})
+dtform="%Y-%m-%d"
+
+function gesetzlich {
+	date -d "${year}-01-01" +"${dtform} - Neujahr (%A)"
+
+	date -d "${year}-01-06" +"${dtform} - Heilige Drei Könige (%A) [BW,BY,ST]"
+	date -d "${year}-03-08" +"${dtform} - Internationaler Frauentag (%A) [BE,MV]"
+
+	date -d "${eastern} -2 day" +"${dtform} - Karfreitag"
+
+	date -d "${eastern}" +"${dtform} - Ostersonntag [BB]"
+
+	date -d "${eastern} +1 day" +"${dtform} - Ostermontag"
+
+	date -d "${eastern} +39 day" +"${dtform} - Christi Himmelfahrt (%A)"
+
+	date -d "${eastern} +49 day" +"${dtform} - Pfingstsonntag [BB]"
+
+	date -d "${eastern} +50 day" +"${dtform} - Pfingstmontag"
+
+	date -d "${eastern} +60 day" +"${dtform} - Frohleichnahm (%A) [BW,BY,HE,NW,RP,SL]"
+
+	date -d "${year}-08-08" +"${dtform} - Augsburger Friedenfest (%A) [BY]"
+	date -d "${year}-08-15" +"${dtform} - Mariä Himmelfahrt (%A) [BY,SL]"
+	date -d "${year}-09-20" +"${dtform} - Weltkindertag (%A) [TH]"
+
+	date -d "${year}-10-03" +"${dtform} - Tag der deutschen Einheit (%A)"
+
+	date -d "${year}-10-31" +"${dtform} - Reformationstag (%A) [BB,BE,HH,MV,NI,SN,ST,TH]"
+	date -d "${year}-11-01" +"${dtform} - Allerheiligen (%A) [BW,BY,NW,RP,SL]"
+
+	# Buß- und Bettag [SN] - Mittwoch zwischen 16. und 22. November
+
+	date -d "${year}-12-25" +"${dtform} - 1. Weihnachtsfeiertag (%A)"
+	date -d "${year}-12-26" +"${dtform} - 2. Weihnachtsfeiertag (%A)"
+}
+
+gesetzlich

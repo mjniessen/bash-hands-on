@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+2nd_friday() {
+  local os=0 wd=0
+  wd=$(date -d "${1}-${2}-01" +"%u")
+  if ((wd <= 5)); then
+    ((os = 5 - wd + 7))
+  else
+    ((os = wd - (wd / 7) * 2 + 7))
+  fi
+  date -d "${1}-${2}-01 +${os} day" +"%s"
+}
+
+next_maintenance() {
+  local nxt now dat
+  nxt="$(2nd_friday "${1:-$(date +"%Y")}" "${2:-$(date +"%m")}")"
+  now="$(date +"%s")"
+  if ((now <= nxt)); then
+    date -d "@${nxt}" +"%d.%m.%Y"
+  else
+    dat="$(date -d "@${now}" +"%Y-%m-%d")"
+    next_maintenance "$(date -d "${dat} +1 month" +"%Y")" "$(date -d "${dat} +1 month" +"%m")"
+  fi
+}
+
+next_maintenance "$@"
