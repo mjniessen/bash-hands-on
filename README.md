@@ -27,13 +27,16 @@ Befehl:
 git pull
 ```
 
-
 ## Verzeichnis `config`
 
 Die dokumentierte Grundkonfiguration zur direkten Verwendung.
 
-## Verzeichnis `versions`
+## Verzeichnis `examples`
 
-Das Script zur Erfassung aller installierten Paketversionen auf Debian-basierten
-Linux-Systemen.
+Ein grosser Teil der besprochenen Beispiele.
+
+## Verzeichnis `templates`
+
+Hier befinden sich die kleinen, besprochenen Grundgerüste, um schnell und
+einfach mit eigenen Skripts zu starten.
 
