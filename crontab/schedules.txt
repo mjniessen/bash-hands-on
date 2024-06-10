@@ -1,0 +1,145 @@
+# Jede Minute
+
+  * * * * * /path/to/command
+# - - - - -
+# | | | | |
+# | | | | +----- Wochentag (0 - 6) (Sonntag = 0 oder 7)
+# | | | +------- Monat (1 - 12)
+# | | +--------- Tag des Monats (1 - 31)
+# | +----------- Stunde (0 - 23)
+# +------------- Minute (0 - 59)
+
+# Jeden Tag um Mitternacht
+
+  0 0 * * * /path/to/command
+  - - - - -
+# | | | | |
+# | | | | +----- Wochentag (0 - 6) (Sonntag = 0 oder 7)
+# | | | +------- Monat (1 - 12)
+# | | +--------- Tag des Monats (1 - 31)
+# | +----------- Stunde (0 - 23)
+# +------------- Minute (0 - 59)
+
+# Jeden Montag um 6:30 Uhr
+
+  30 6 * * 1 /path/to/command
+# -- - - - -
+# |  | | | |
+# |  | | | +---- Wochentag (0 - 6) (Sonntag = 0 oder 7)
+# |  | | +------ Monat (1 - 12)
+# |  | +-------- Tag des Monats (1 - 31)
+# |  +---------- Stunde (0 - 23)
+# +------------- Minute (0 - 59)
+
+# Am 15. des Monats um 4:30 Uhr
+
+  30 4 15 * * /path/to/command
+# -- - -- - -
+# |  | |  | |
+# |  | |  | +---- Wochentag (0 - 6) (Sonntag = 0 oder 7)
+# |  | |  +------ Monat (1 - 12)
+# |  | +--------- Tag des Monats (1 - 31)
+# |  +----------- Stunde (0 - 23)
+# +-------------- Minute (0 - 59)
+
+# Jeden Werktag (Montag bis Freitag) um 8:00 Uhr
+
+  0 8 * * 1-5 /path/to/command
+# - - - - ---
+# | | | |  |
+# | | | |  +---- Wochentag (0 - 6) (Sonntag = 0 oder 7)
+# | | | +------- Monat (1 - 12)
+# | | +--------- Tag des Monats (1 - 31)
+# | +----------- Stunde (0 - 23)
+# +------------- Minute (0 - 59)
+
+# Jede Viertelstunde
+
+  0,15,30,45 * * * * /path/to/command
+# ---------- - - - -
+#      |     | | | |
+#      |     | | | +---- Wochentag (0 - 6) (Sonntag = 0 oder 7)
+#      |     | | +------ Monat (1 - 12)
+#      |     | +-------- Tag des Monats (1 - 31)
+#      |     +---------- Stunde (0 - 23)
+#      +---------------- Minute (0 - 59)
+
+# Alle 5 Minuten (alternative Schreibweise)
+
+  */5 * * * * /path/to/command
+# --- - - - -
+#  |  | | | |
+#  |  | | | +---- Wochentag (0 - 6) (Sonntag = 0 oder 7)
+#  |  | | +------ Monat (1 - 12)
+#  |  | +-------- Tag des Monats (1 - 31)
+#  |  +---------- Stunde (0 - 23)
+#  +------------- Minute (0 - 59)
+
+# Alle zwei Stunden ausführen (beginnend ab Mitternacht)
+
+  0 */2 * * * /path/to/command
+# - --- - - -
+# |  |  | | |
+# |  |  | | +---- Wochentag (0 - 6) (Sonntag = 0 oder 7)
+# |  |  | +------ Monat (1 - 12)
+# |  |  +-------- Tag des Monats (1 - 31)
+# |  +----------- Stunde (0 - 23)
+# +-------------- Minute (0 - 59)
+
+# Jede Minute zwischen 9:00 und 17:00 Uhr an Werktagen
+
+  * 9-17 * * 1-5 /path/to/command
+# - ---- - - ---
+# |  |   | |  |
+# |  |   | |  +---- Wochentag (0 - 6) (Sonntag = 0 oder 7)
+# |  |   | +------- Monat (1 - 12)
+# |  |   +--------- Tag des Monats (1 - 31)
+# |  +------------- Stunde (0 - 23)
+# +---------------- Minute (0 - 59)
+
+# Jeden Montag und Donnerstag um 18:00 Uhr
+
+  0 18 * * 1,4 /path/to/command
+# - -- - - ---
+# | |  | |  |
+# | |  | |  +---- Wochentag (0 - 6) (Sonntag = 0 oder 7)
+# | |  | +------- Monat (1 - 12)
+# | |  +--------- Tag des Monats (1 - 31)
+# | +------------ Stunde (0 - 23)
+# +-------------- Minute (0 - 59)
+
+# Jeden Samstag um Mitternacht, 6:00 Uhr, 12:00 Uhr und 18:00 Uhr
+
+  0 0,6,12,18 * * 6 /path/to/command
+# - --------- - - -
+# |     |     | | |
+# |     |     | | +---- Wochentag (0 - 6) (Sonntag = 0 oder 7)
+# |     |     | +------ Monat (1 - 12)
+# |     |     +-------- Tag des Monats (1 - 31)
+# |     +-------------- Stunde (0 - 23)
+# +-------------------- Minute (0 - 59)
+
+#  Alle drei Stunden, aber nur am Wochenende
+
+  0 */3 * * 6,7 /path/to/command
+# - --- - - ---
+# |  |  | |  |
+# |  |  | |  +---- Wochentag (0 - 6) (Sonntag = 0 oder 7)
+# |  |  | +------- Monat (1 - 12)
+# |  |  +--------- Tag des Monats (1 - 31)
+# |  +------------ Stunde (0 - 23)
+# +--------------- Minute (0 - 59)
+
+# Jeden Wochentag um Mitternacht und jeden Samstag und Sonntag um 9:00 Uhr
+
+  0 0 * * 1-5 /path/to/command
+  0 9 * * 6,7 /path/to/command
+# - - - - ---
+# | | | |  |
+# | | | |  +---- Wochentag (0 - 6) (Sonntag = 0 oder 7)
+# | | | +------- Monat (1 - 12)
+# | | +--------- Tag des Monats (1 - 31)
+# | +----------- Stunde (0 - 23)
+# +------------- Minute (0 - 59)
+
+
