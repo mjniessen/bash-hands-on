@@ -4,6 +4,8 @@
 
 Hier findet ihr die erarbeiteten bzw. gezeigten Scripte unseres wöchentlichen Regeltermins.
 
+Die Begleitdokumente als PDF findet ihr [hier](https://hohlhupen.de/bash/).
+
 Um komfortabel das Repository auf euren Rechner zu bekommen, benötigt ihr `git`.
 Auf Debian-basierten Systemen lässt sich dieses Tool über folgendes Kommando installieren:
 
