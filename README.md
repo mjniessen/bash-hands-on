@@ -2,14 +2,15 @@
 
 # BASH - Hands-on
 
-Hier findet ihr die erarbeiteten bzw. gezeigten Scripte unseres wöchentlichen Regeltermins.
-
-Die Begleitdokumente als PDF findet ihr [hier](https://hohlhupen.de/bash/).
+Erarbeiteten bzw. gezeigten Scripte sowie die Konfigurationsbeispiele sind in
+diesem Repository enthalten. Die Begleitdokumente als PDF findet ihr allerdings
+[hier](https://hohlhupen.de/bash/).
 
 Um komfortabel das Repository auf euren Rechner zu bekommen, benötigt ihr `git`.
 Auf Debian-basierten Systemen lässt sich dieses Tool über folgendes Kommando installieren:
 
 ```bash
+sudo apt update
 sudo apt install git
 ```
 
