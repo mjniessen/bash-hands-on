@@ -27,6 +27,7 @@ herunterzuziehen, lässt sich innerhalb des erstellten Verzeichnisses mit dem
 Befehl:
 
 ```bash
+cd bash-hands-on
 git pull
 ```
 
