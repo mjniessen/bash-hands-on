@@ -15,7 +15,7 @@ if [ ! -f "$CONTEXT_FILE" ]; then
 fi
 
 # Kontext laden und neue User-Eingabe hinzufügen
-messages=$(cat "$CONTEXT_FILE" | jq --arg prompt "$prompt" '. + [{"role": "user", "content": $prompt}]')
+messages=$(jq --arg prompt "$prompt" '. + [{"role": "user", "content": $prompt}]' "$CONTEXT_FILE")
 
 # Anzeige: Live-Ausgabe simulieren
 echo -e "Assistant: \c"

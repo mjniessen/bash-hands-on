@@ -2,8 +2,6 @@
 
 set -e
 
-REQUIRED_TOOLS=("file")
-
 # Funktion: Tool-Check
 check_tool() {
   local tool="$1"

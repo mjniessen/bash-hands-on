@@ -15,9 +15,6 @@ mkdir -p "$CACHE_DIR"
 trap "rm -f $TMPFILE" EXIT
 
 # Farben definieren
-# RED='\033[0;31m'
-# GREEN='\033[0;32m'
-# YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
@@ -109,7 +106,7 @@ build_model_list() {
   spinner $!
 
   # Cache aktualisieren
-  cat "$TMPFILE" | sort -u >"$CACHE_FILE"
+  sort -u "$TMPFILE" >"$CACHE_FILE"
   cp "$CACHE_FILE" "$TMPFILE"
 }
 

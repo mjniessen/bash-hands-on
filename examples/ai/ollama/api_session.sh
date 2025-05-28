@@ -1,7 +1,6 @@
 #!/bin/bash
 
 MODEL="llama3.2:latest"
-# MODEL="tinyllama:latest"
 SESSION_ID="chat-session-003"
 CONTEXT_FILE="context_$SESSION_ID.json"
 SYSTEM_PROMPT="Du bist ein hilfreicher Assistent. Antworte präzise, kurz und sachlich."
@@ -9,13 +8,10 @@ SYSTEM_PROMPT="Du bist ein hilfreicher Assistent. Antworte präzise, kurz und sa
 TMP_FILE=$(mktemp /tmp/ollama-XXXXXXX)
 
 # Farben definieren
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
-# Nerd Font Symbole für Spinner
+# Braille Symbole für Spinner
 spinner_chars=(⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏)
 
 # Spinner-Funktion

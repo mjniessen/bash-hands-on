@@ -14,15 +14,17 @@ function fancy_headline() {
 MODELS=($(ollama list | awk 'NR > 1 { print $1 }' | fzf -m))
 VERSION=$(ollama --version)
 
-fancy_info "Ollama ${VERSION##* }"
+# Ersetze 'echo' mit 'fancy_info', bei installierten Nerd Fonts
+echo "Ollama ${VERSION##* }"
 
 for MODEL in "${MODELS[@]}"; do
 
   # Auto-Logfile
   TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
-  CHAT_LOG=".chatlogs/chatlog-${MODEL}-${TIMESTAMP}.md"
+  CHAT_LOG="chatlog-${MODEL}-${TIMESTAMP}.md"
 
-  fancy_headline "$MODEL"
+  # Ersetze 'echo' mit 'fancy_headline', bei installierten Nerd Fonts
+  echo "$MODEL"
 
   # echo "$model:"
   echo "$QUERY" >"$CHAT_LOG"
@@ -33,5 +35,7 @@ for MODEL in "${MODELS[@]}"; do
   TIMESTOP=$(date +%s)
   TIME=$((TIMESTOP - TIMESTART))
   WORDS=$(wc -w "$CHAT_LOG")
-  fancy_info "${WORDS%% *} words in ${TIME}s"
+
+  # Ersetze 'echo' mit 'fancy_info', bei installierten Nerd Fonts
+  echo "${WORDS%% *} words in ${TIME}s"
 done
